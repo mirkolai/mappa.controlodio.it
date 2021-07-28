@@ -1,0 +1,13 @@
+.axisForce path, .axisForce line {
+	fill: none;
+	stroke: black;
+	shape-rendering: optimizeSpeed;
+}
+.backgroundCartesian {
+	opacity:0;
+	z-index:-5;
+}
+.label_cartesian {
+	font-size: 1.1em;
+	font-weight: normal; 
+}

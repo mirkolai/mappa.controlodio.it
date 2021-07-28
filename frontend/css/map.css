@@ -1,0 +1,100 @@
+.overlay {
+	fill: none;
+	pointer-events: all;
+}
+
+/*INFO OPTIONS*/
+#info-map-items-div {
+	text-align: left;
+	padding-left: 13px;
+    padding-right: 13px;
+}
+#info-map-province-div {
+	overflow:hidden;
+	padding-top: 7px;
+}
+#info-map-attribute-div {
+	overflow:hidden;
+	padding-top: 13px;
+}
+#info-province-name, #info-province-population, #info-province-target,#info-province-total,#info-province-hs,#info-province-aggressiveness,#info-province-offensiveness,#info-province-intensity,#info-province-irony,#info-province-stereotype {
+
+	float:right;
+}
+
+/*MENU OPTIONS*/
+
+#target-map-selector-container {
+	align-items: center;
+	text-align: center;
+}
+#target-map-selector {
+	font-size: 1.1em;
+	width: auto;
+	text-align: center;
+	text-align-last:center;
+	display: block;
+	margin: 0 auto;
+}
+#label-target-map-selector {
+
+}
+#precision-map-selector-container {
+	align-items: center;
+	text-align: center;
+}
+#precision-map-selector {
+	font-size: 1.1em;
+	width: auto;
+	text-align: center;
+	text-align-last:center;
+	display: block;
+	margin: 0 auto;
+}
+#label-precision-map-selector {
+	font-size: 1.1em;
+}
+#info-click-adv {
+	text-align: center;
+	margin-top: 15px;
+}
+#tweet {
+	width: 96% !important;
+	height: 100% !important;
+}
+#tweet iframe {
+	border: none !important;
+	box-shadow: none !important;
+}
+.EmbeddedTweet-tweet{
+	background-color: rgb(237, 237, 237);
+}
+.city, .euro {
+	stroke: white;
+	stroke-width:0.5;
+}
+#axis-legend path, #axis-legend line {
+	fill: none;
+	stroke: none; /*black;*/
+	shape-rendering: crispEdges;
+}
+#axis-legend text {
+	font-family: Consolas, courier;
+ 	fill: #cecece;
+ 	color: #cecece;
+ 	font-size: 1.2em;
+}
+#svg-container-2 {
+    cursor: move;
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+#svg-container-2:active { 
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+.city {
+	cursor: pointer;
+}

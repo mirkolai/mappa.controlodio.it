@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en" ng-app="prova2">
+	<head>
+		<base href="">
+		<title>Contro L'odio</title>
+		<meta charset="utf-8">
+
+		<link rel="apple-touch-icon" sizes="180x180" href="data/img/favicon/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="data/img/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="data/img/favicon/favicon-16x16.png">
+		<link rel="manifest" href="data/img/favicon/site.webmanifest">
+		<link rel="mask-icon" href="data/img/favicon/safari-pinned-tab.svg" color="#ff0000">
+		<link rel="shortcut icon" href="data/img/favicon/favicon.ico">
+		<meta name="msapplication-TileColor" content="#2d89ef">
+		<meta name="msapplication-config" content="data/img/favicon/browserconfig.xml">
+		<meta name="theme-color" content="#ffffff">
+
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1", user-scalable=no>
+		<meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/css/bootstrap-slider.css">
+
+		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway"/>
+
+
+		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="css/temporal_slider.css">
+		<link rel="stylesheet" href="css/cartesian.css">
+		<link rel="stylesheet" href="css/map.css">
+		<link rel="stylesheet" href="css/word_co.css">
+		<link rel="stylesheet" href="css/bar_chart.css">
+
+		<style type="text/css">
+			@font-face {
+				font-family: 'Raleway';
+				font-style: normal;
+				font-weight: 400;
+				src: local('Raleway'), local('Raleway-Regular'), url(fonts/1Ptug8zYS_SKggPNyC0ITw.woff2) format('woff2');
+				unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+			}
+		</style>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		<script src="https://d3js.org/d3.v4.js"></script>
+		<script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.0/topojson.min.js"></script>
+
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://rawgit.com/wpic/bootstrap-number-input/master/bootstrap-number-input.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/bootstrap-slider.js"></script>
+		<script type='text/javascript' src="//wurfl.io/wurfl.js"></script>
+
+
+		<script sync src="https://platform.twitter.com/widgets.js"></script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+		<script src='lib/js/masonry.pkgd.js'></script>
+		<script src="lib/js/saveSvgAsPng.js"></script>
+		<script src="lib/js/liquidFillGauge.js"></script>
+		<script src="lib/js/d3.layout.cloud.js"></script>
+		<script src="lib/js/d3.tip.v06.3.js"></script>
+		<script src="app.js"></script>
+
+		<script src="components/slider.js"></script>
+		<script src="components/map.js"></script>
+		<script src="components/liquid.js"></script>
+		<script src="components/change_theme.js"></script>
+		<script src="components/words.js"></script>
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131139637-2"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'UA-131139637-2');
+		</script>
+
+	</head>
+
+	<body>
+
+		<div class="container-fluid top-buffer" ng-controller="div1">
+			<directivechangetheme theme = "theme"></directivechangetheme>
+			<viralitydiv parameter-admindivlevel="{{model_admindivlevel}}"
+					parameter-slider = {{slider}}
+					parameter-year="{{date.year}}"
+					parameter-frequency="{{model_frequency}}"
+					parameter-month="{{date.month}}"
+					parameter-day="{{date.day}}"
+					parameter-topic="{{model_topic}}"
+					parameter-administrative-division1="{{model_administrative_division_1}}"
+					parameter-administrative-division2="{{model_administrative_division_2}}"
+					parameter-virality="{{model_virality}}">
+			</viralitydiv>
+
+			<sliderdir slider = "slider"
+					parameter-frequency="model_frequency"
+					parameter-admindivlevel="model_admindivlevel"
+					parameter-months-name="model_months_name"
+					parameter-year="date.year"
+					parameter-month="date.month"
+					parameter-day="date.day"
+					parameter-topic="model_topic"
+					parameter-view="model_view"
+					parameter-actual-array-date="model_actual_array_date"
+					parameter-mobile = "mobile">
+			</sliderdir>
+
+			<liquiddiv parameter-frequency="{{model_frequency}}"
+					parameter-year="{{date.year}}"
+					parameter-month="{{date.month}}"
+					parameter-actual-array-date={{model_actual_array_date}}
+					parameter-day="{{date.day}}">
+			</liquiddiv>
+		
+			<wordsdiv parameter-slider = {{slider}}
+					parameter-year="{{date.year}}"
+					parameter-frequency="{{model_frequency}}"
+					parameter-month="{{date.month}}"
+					parameter-day="{{date.day}}"
+					parameter-view="{{model_view}}"
+					parameter-topic="{{model_topic}}">
+			</wordsdiv>
+
+			<mapdiv parameter-admindivlevel="model_admindivlevel"
+					parameter-slider = {{slider}}
+					parameter-year="{{date.year}}"
+					parameter-frequency="{{model_frequency}}"
+					parameter-month="{{date.month}}"
+					parameter-day="{{date.day}}"
+					parameter-topic="{{model_topic}}"
+					parameter-actual-array-date={{model_actual_array_date}}
+					parameter-administrative-division1="{{model_administrative_division_1}}"
+					parameter-administrative-division2="{{model_administrative_division_2}}"
+					parameter-map-type="{{model_map_type}}"
+					parameter-mobile = "{{mobile}}">
+			</mapdiv>
+
+			<div class="row content-fluid">
+				<div class="col-lg-3">
+					<div class="row">
+						<div class="col-sm-12 col-lg-12">
+							<div class="well well-lg" id="well-sidebar-info-container">
+
+								<div class="sidebar-info-container">
+									<div id="logo">
+										<div class="logo-div">
+											<img id = "logo-contro-odio-img" src="data/img/logo.png"/>
+											<div class="date-container">
+												<span class="date-span" id="span-day-container">{{date.day}}&nbsp;</span>
+												<span class="date-span" id="span-month-container">{{model_months_name[date.month-1]}},&nbsp;&nbsp;&nbsp;&nbsp;</span>
+												<span class="date-span" id="span-year-container">{{date.year}}</span>
+											</div>
+										</div>										
+									</div>
+									<br>
+									
+									<div id="myCarousel-info" class="carousel slide" data-interval="false">
+										<div class="carousel-inner">
+											<!-- 
+												MAPPA
+											-->
+											<div class="item active" id="info-map-container" data-name="map">
+												<div id = "precision-map-selector-container" >
+													<div id = "target-map-selector-container" >
+
+														<div id = "targets-container">
+															<br>
+
+															<div class="targets" id="all-target" value="all">
+																<span class="span-targets" id="span-targets-all" style='color:#fff;'>Tutti i target</span>
+															</div>
+															<div class="targets" id="roma-target" value="roma">
+																<span class="span-targets-2" id="span-targets-roma" style='color:#fff;'>Rom</span>
+															</div>
+															<div class="targets" id="etnichs_group-target" value="etnichs_group">
+																<span class="span-targets-2" id="span-targets-etnichs_group" style='color:#fff;'>Migranti</span>
+															</div>
+															<div class="targets" id="religion-target" value="religion">
+																<span class="span-targets-2" id="span-targets-religion" style='color:#fff;'>Minoranze religiose</span>
+															</div>
+															<br>
+															<br>
+														</div>
+													</div>
+													<div class="logo-div">
+														<img class = "logo-img" id = "nation_icon" src="data/img/italy_icon.png"/>
+													
+														<img class = "logo-img" id = "region_icon" src="data/img/region_icon.png"/>
+
+														<img class = "logo-img" id = "province_icon" src="data/img/province_icon.png"/>
+													</div>			
+												</div>
+												<div id = "info-map-items-div" style="display:none">
+													<div id="info-map-province-div">
+														<span id = "info-province-name-label"></span>
+														<span id = "info-province-name"></span><br>
+													<!--
+														<span>Popolazione: </span>
+														<span id = "info-province-population"></span><br>
+													-->
+													</div>
+													<span></span>
+													<div id="info-map-attribute-div">
+														<span>Numero di tweets: </span>
+														<span id = "info-province-total"></span><br>
+														<span>Hate Speech: </span>
+														<span id = "info-province-hs"></span><br>
+													</div>
+												</div>
+												<div id="info-click-adv">
+													Clicca sulla mappa per maggiori informazioni<br><br>
+													<span>Numero di tweets: </span>
+													<span id = "info-italy-total"></span><br>
+													<span>Hate Speech: </span>
+													<span id = "info-italy-hs"></span><br>
+												</div>
+												<br>
+												<!--<span style="display:block; height: 50px;"></span>-->
+												<div class="flags-div">
+													<img id = "flag-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/320px-Flag_of_Italy.svg.png" onclick="window.open('https://it.wikipedia.org/wiki/Italia', '_blank');"/>
+												</div>
+											</div>
+											<!-- 
+												TWEET
+											-->
+											<div class="item" id="info-virality-container" data-name="virality">
+												<div id = "targets-container">
+													<br>
+
+													<div class="targets" id="all-target" value="all">
+														<span class="span-targets" id="span-targets-all" style='color:#fff;'>Tutti i target</span>
+													</div>
+													<div class="targets" id="roma-target" value="roma">
+														<span class="span-targets-2" id="span-targets-roma" style='color:#fff;'>Rom</span>
+													</div>
+													<div class="targets" id="etnichs_group-target" value="etnichs_group">
+														<span class="span-targets-2" id="span-targets-etnichs_group" style='color:#fff;'>Migranti</span>
+													</div>
+													<div class="targets" id="religion-target" value="religion">
+														<span class="span-targets-2" id="span-targets-religion" style='color:#fff;'>Minoranze religiose</span>
+													</div>
+
+													<br>
+
+												<br>
+												</div>
+												<div id = "precision-virality-container">
+													<span class = "tweets-virality" data-tooltip="tooltip" value="retweet" title="Retweet" onmouseenter="$(this).tooltip('show')"> 
+														<span class="tweet-span" id="span-tweet-retweet"  value="retweet">
+															<span class="glyphicon glyphicon-retweet" style="padding-left: 11px;"> </span>
+														</span>
+													</span>
+													<span class = "tweets-virality" value="reply"  data-tooltip="tooltip" title="Reply" onmouseenter="$(this).tooltip('show')"> 
+														<span class="tweet-span-2" id="span-tweet-reply" value="reply" >
+															<span class="glyphicon glyphicon-comment" style="padding-left: 11px;"> </span>
+														</span>
+													</span>
+													<span class = "tweets-virality" id="quote-span" value="quote"> 
+														<span class="tweet-span-2" id="span-tweet-quote" value="quote" >
+															<span class="glyphicon glyphicon-comment" style="padding-left: 11px;" > </span>
+															<span class="glyphicon glyphicon-retweet" value="quote" style="font-size: 0.7em; left: -1.5em; top:-0.35em; color: #161616; position: relative;"  data-tooltip="tooltip" title="Quote" onmouseenter="$(this).tooltip('show')"> </span>
+														</span>
+													</span>
+												</div>
+
+												<div id="liquid_description">
+													<br>
+													<p>In questa sezione vengono mostrati i tweet rivolti ai gruppi vulnerabili all’odio che ottengono più reazioni dagli utenti: retweet, reply, quote.</p>
+													<br>
+													<p>
+													ATTENZIONE, questi testi non sono stati necessariamente identificati come hate speech dal classificatore, ma semplicemente i più virali.
+													</p>
+												</div>
+
+											</div>
+											<!-- 
+												LIQUID
+											-->
+											<div class="item" id="info-new-container" data-name="liquid">
+												<div id="liquid_description">
+													<br>
+													<p><h4 style="text-align: center;">I discorsi d'odio in lingua italiana.</h4></p>
+													<br><br>
+													<p>Il numero di testi geolocalizzati è solo una piccola percentuale di quelli pubblicati su Twitter.</p>
+													<br>
+													<p>
+													La Fill Gauge Visualization mostra il numero totale di tweet in lingua italiana riferiti ai gruppi vulnerabili all’odio e la percentuale di hate speech rivolti contro di loro.
+													</p>
+												</div>
+											</div>
+											<!-- 
+												WORDS
+											-->
+											<div class="item" id="info-word-container" data-name="words">
+												<div id = "targets-container">
+													<br>
+
+													<div class="targets" id="all-target" value="all">
+														<span class="span-targets" id="span-targets-all" style='color:#fff;'>Tutti i target</span>
+													</div>
+													<div class="targets" id="roma-target" value="roma">
+														<span class="span-targets-2" id="span-targets-roma" style='color:#fff;'>Rom</span>
+													</div>
+													<div class="targets" id="etnichs_group-target" value="etnichs_group">
+														<span class="span-targets-2" id="span-targets-etnichs_group" style='color:#fff;'>Migranti</span>
+													</div>
+													<div class="targets" id="religion-target" value="religion">
+														<span class="span-targets-2" id="span-targets-religion" style='color:#fff;'>Minoranze religiose</span>
+													</div>
+
+													<br>
+
+												<br>
+												</div>
+
+												<div id="word_description">
+													<div id = "info-word-items-div" style="display:none">
+														<div id="info-word-attribute-div">
+															<span>La parola </span><span id = "info-word-text"></span><br>
+															<span>compare </span><span id = "info-word-count"></span> volte.<br><br>
+															Nei tweet in cui compare la parola <span id = "info-word-text-2"></span>, la percentuale di Hate Speech è <span id = "info-word-HS"></span>
+														</div>
+														<div id = "co_words_button">
+															<hr>
+															<!-- <span class="ol"></span> -->
+															Clicca qui per esplorare la rete delle co-occorrenze.
+															<!-- <span class="ol"></span> -->
+															<hr>
+														</div>
+													</div>
+													<div id="info-word-click-adv">
+														<br><br>
+														Clicca su una parola per maggiori informazioni.
+														<br><br>
+													</div>
+													<div id = "word_cloud_button">
+														Clicca qui per visualizzare la words cloud.
+													</div>
+												</div>
+
+											</div>
+
+
+										</div>
+									</div>
+									<a class="left carousel-control" href=".carousel" data-slide="prev">
+										<span class="glyphicon glyphicon-chevron-left"></span>
+										<span class="sr-only"></span>
+									</a>
+									<a class="right carousel-control" href=".carousel" data-slide="next">
+										<span class="glyphicon glyphicon-chevron-right"></span>
+										<span class="sr-only"></span>
+									</a>
+
+									<div class="share-link-container">
+
+										<span class="glyphicon glyphicon-link" data-toggle="modal" data-target="#modal_sharable_link" data-tooltip="tooltip" title="Ottieni link condivisibile" onmouseenter="$(this).tooltip('show')"></span>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-9">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="well well-lg " id="graph1">
+								<div id="myCarousel" class="carousel slide" data-interval="false">
+									<div class="carousel-inner">
+										<!-- 
+											MAPPA
+										-->
+										<div class="item active" id="svg-container-2" data-name="map">
+											<span class="glyphicon glyphicon-cog" data-toggle="modal" data-target="#modal_settings" data-tooltip="tooltip" title="Legend settings" onmouseenter="$(this).tooltip('show')"></span>
+											<span class="glyphicon glyphicon-info-sign" data-toggle="modal" data-target="#modal_info_map" data-tooltip="tooltip" title="Info" onmouseenter="$(this).tooltip('show')"></span>
+											<span class="glyphicon glyphicon-camera" data-tooltip="tooltip" title="Print Map" onmouseenter="$(this).tooltip('show')"></span>
+											<svg id="svg2" xmlns="http://www.w3.org/2000/svg">
+											</svg>
+										</div>
+										<!-- 
+											TWEET
+										-->
+										<div class="item" id="svg-container-3" data-name="virality">
+											<div class="grid-container">
+												<div class="grid-sizer"></div>
+											</div>
+											<span class="glyphicon glyphicon glyphicon-plus" data-tooltip="tooltip" title="Load More Tweets" id="more_tweet"></span>
+											<span class="glyphicon glyphicon-info-sign" data-toggle="modal" data-target="#modal_info_tweet" data-tooltip="tooltip" title="Info" onmouseenter="$(this).tooltip('show')"></span>
+										</div>
+										<!-- 
+											LIQUID
+										-->
+										<div class="item" id="svg-container-1" data-name="liquid">
+											<div id = "liquid-div-container">
+												<svg id="svg_liquid_0" xmlns="http://www.w3.org/2000/svg">
+												</svg>
+												<svg id="svg_liquid_1" xmlns="http://www.w3.org/2000/svg">
+												</svg>
+												<svg id="svg_liquid_2" xmlns="http://www.w3.org/2000/svg">
+												</svg>
+											</div>
+											<span class="glyphicon glyphicon-info-sign" data-toggle="modal" data-target="#modal_info_liquid" data-tooltip="tooltip" title="Info" onmouseenter="$(this).tooltip('show')"></span>
+										</div>
+										<!-- 
+											WORDS
+										-->
+										<div class="item" id="svg-container-4" data-name="words">
+											<svg id="svg-word" xmlns="http://www.w3.org/2000/svg">
+											</svg>
+											<div id="bar_chart_options">												
+												<span class="options_button" id="order_count">Ordina per occorrenze</span>
+												<span class="options_button" id="order_hate">Ordina per hate speech</span>
+												<span class="vl"></span>
+												<span class="options_button" id="show_only_hate">Solo hate speech</span>
+												<span class="vl"></span>
+												<span class="options_button" id="show_only_count">Solo occorrenze</span>
+												<span class="vl"></span>
+												<span class="options_button" id="show_only_both">Mostra entrambi</span>
+											</div>
+											<span class="glyphicon glyphicon-camera" data-tooltip="tooltip" title="Print Map" onmouseenter="$(this).tooltip('show')"></span>
+											<span class="glyphicon glyphicon-refresh" data-tooltip="tooltip" title="Refresh Words Cloud" onmouseenter="$(this).tooltip('show')"></span>
+											<span class="glyphicon glyphicon-eye-close" data-tooltip="tooltip" title="Hide Words Cloud" onmouseenter="$(this).tooltip('show')"></span>
+											<span class="glyphicon glyphicon-info-sign" data-toggle="modal" data-target="#modal_info_word" data-tooltip="tooltip" title="Info" onmouseenter="$(this).tooltip('show')"></span>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row content-fluid" style="height: 10vh">
+				<div class="col-sm-12">
+					<div class="well well-lg" id="well-temporal-slider">
+						<div class="temporal-slider-svg-container">
+					<span class="glyphicon glyphicon-info-sign" id="info-sign-slider" data-toggle="modal" data-target="#modal_info_slider" data-tooltip="tooltip" title="Info" onmouseenter="$(this).tooltip('show')"></span>
+							<svg id="temporal-slider-svg" xmlns="http://www.w3.org/2000/svg">
+							</svg>
+							<div class="monthSlider" ng-model="model_date"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<div class="modal fade" id="modal_mobile_adv" role="dialog">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Mobile device found!</h4>
+						</div>
+						<div class="modal-body">
+							Per una migliore esperienza d'uso, ti consigliamo di utilizzare questa dashboard attraverso un PC.<br>
+							Questa versione mobile permette di esplorare i dati relativi esclusivamente all'utlimo giorno presente nel nostro database.
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="modal_settings" role="dialog">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h2 class="modal-title">Impostazioni</h4>
+						</div>
+						<div class="modal-body">
+							<div class="modal-header">
+								<h4 class="modal-title">Legenda</h4>
+							</div>
+							<br>
+							<form id="legend_form">
+								<input type="radio" name="legend" value="Standard" checked> Standard<br>
+								<input type="radio" name="legend" value="Median"> Mediana<br>
+								<input type="radio" name="legend" value="AVG"> AVG
+							</form>
+							<br>
+							<br>
+							<br>
+							<div class="modal-header">
+								<h4 class="modal-title">Tipologia mappa</h4>
+							</div>
+							<br>
+							<form>
+								<input type="radio" name="map-type" ng-model="model_map_type" value="map" selected> Mappa Coropletica<br>
+								<input type="radio" name="map-type" ng-model="model_map_type" value="dorling"> Mappa di Dorling
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="modal_info_liquid" role="dialog">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Info</h4>
+						</div>
+						<div class="modal-body">
+							<p>La <b>FIll Gauge Visualization</b> sfrutta lo stesso classificatore della Mappa coropletica, ad eccezione del passaggio in cui vengono selezionati soltanto i tweet geolocalizzati.</p>
+							Gli step di raccolta e analisi dati sono quindi i seguenti: 
+							<ul>
+								<li><b>raccolta</b> di tutti i testi in lingua italiana tramite le STREAM API di Twitter;</li>
+								<li><b>filtraggio</b> dei tweet tramite <b>parole chiave</b> che possono essere riferibili a tre gruppi vulnerabili: stranieri, minoranze religiose e rom;</li>
+								<li><b>riconoscimento</b> dei discorsi di incitamento all’odio contro i gruppi vulnerabili, grazie a un modello di HS detection che fa uso di algoritmi machine learning.</li>
+							</ul>
+							<br>
+							<p>Il classificatore è in continuo aggiornamento. Il suo grado di affidabilità verrà aggiornato periodicamente sul sito del progetto.</p>
+							<br>
+							<p>Il <b>grafico ad area</b> sotto la Fill Gauge Visualization mostra il numero di tweet totali in lingua italiana che si riferiscono ai gruppi vulnerabili (area grigia) e il numero di hate speech (area rossa).</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="modal_info_map" role="dialog">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Info</h4>
+						</div>
+						<div class="modal-body">
+							<p>Questa è la <b>Mappa coropletica</b>: una mappa che presenta diverse sfumature di colore all'interno di confini geografici con l'intento di mostrare la proporzione di una variabile di interesse, nel nostro caso la quantità di <em>hate speech</em> (discorsi di incitamento all’odio) pubblicati su Twitter da utenti che scrivono dall’Italia.</p>
+							<p><h3 style="color: gray">Opzioni di interazione sulla mappa</h3></p>
+							<p>La quantità di <em>hate speech</em> in Italia è rappresentata da una <b>scala di colori</b> che va da una tonalità di <a href="https://www.colorhexa.com/fff5f0">bianco</a> (assenza di odio) ad una di <a href="https://www.colorhexa.com/67000d">rosso</a> (forte presenza di odio). La scelta di queste tonalità in luogo di una scala semaforica, che va dal verde al rosso, è stata pensata per rendere accessibile questo strumento anche agli utenti che soffrono di daltonismo.</br>
+							Cliccando sulla rotellina accanto alla legenda, in alto a sinistra, è possibile interagire con la mappa in due modi. 
+							</p>
+							Innanzitutto si può modificare i valori che determinano le gradazioni di colore vengono assegnate sulla base di tre criteri differenti:
+							<ul>
+							<li>valori fissi;</li>
+							<li>dinamici basati sulla media del mese;</li>
+							<li>dinamici basati alla mediana del mese.</li>
+							</ul>
+							<p>
+							Inoltre, è possibile passare dalla mappa coropletica a un cartogramma di <a href="https://www.arcgis.com/home/item.html?id=b686a7679cb747e9825d1d1bb6b26046">Dorling</a>, che trasforma le regioni e le province in cerchi le cui circonferenze variano in base al numero assoluto di hate speech pubblicati: più alto è il numero di discorsi d’odio, più ampia sarà la circonferenza.	
+							</p>
+							<p><h3 style="color: gray">Opzioni di interazione del grafico ad area</h3></p>
+							<p>
+							Il <b>grafico ad area</b> sotto la mappa mostra il numero di tweet totali geolocalizzati che si riferiscono ai gruppi vulnerabili (area grigia) e il numero di hate speech (area rossa). Muovendo il cursore è possibile osservare come varia sulla mappa la quantità di odio online da un mese all’altro e da un giorno all’altro.
+							</p>
+							<p><h3 style="color: gray">Opzioni di interazione del riquadro laterale</h3></p>
+							<p>
+							Nel riquadro laterale sono presenti due comandi che permettono all’utente di interagire con la mappa: il primo è un selettore del dettaglio geografico, che mostra l’odio a livello nazionale, regionale e provinciale; il secondo consente all’utente di osservare l’odio riferito a solo uno dei tre gruppi vulnerabili: rom, migranti e minoranze religiose.<br>
+							Inoltre, dal riquadro laterale è possibile passare alle visualizzazioni presenti in questa sezione del sito.
+							</p>
+							<p><h3 style="color: gray">Raccolta e classificazione automatica dei discorsi d’odio</h3></p>
+							<p>I dati visualizzati dalla <em>Heatmap</em> sono raccolti e analizzati automaticamente da un classificatore che opera in quattro passaggi:</p>
+							<ol>
+								<li><b>raccoglie</b> tutti i testi in lingua italiana tramite le STREAM API di Twitter;</li>
+								<li>salva soltanto alcune informazioni dei tweet degli utenti che scelgono di fornire la loro <b>posizione geografica</b>;</li>
+								<li>filtra i testi rimanenti tramite <b>parole</b> chiave che possono essere riferibili a tre gruppi vulnerabili: stranieri, minoranze religiose e rom;</li>
+								<li>riconosce i discorsi di incitamento all’odio contro i gruppi vulnerabili, grazie a un modello di HS detection che fa uso di algoritmi machine learning.</li>
+							</ol>
+							<p>Il classificatore è in continuo aggiornamento. Il suo grado di affidabilità verrà aggiornato periodicamente sul sito del progetto.</p>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="modal_info_co_words" data-keyboard="false" data-backdrop="static" role="dialog">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content" style="display: none" id = "modal-content-co-words">
+						<div class="modal-header" id="modal_header_co_words">
+							<button type="button" class="close" data-dismiss="modal" style="color: white">&times;</button>
+							<h4 class="modal-title">Co-occorenze</h4>
+						</div>
+						<div class="modal-body" id="modal_body_co_words">
+							<div id="svg-container-co-words">
+								<svg id="svg-co-word" xmlns="http://www.w3.org/2000/svg">
+								</svg>
+							</div>
+						</div>
+							<!--<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+							</div> -->
+					</div>
+
+					<br><br><br>
+					<br><br><br>
+
+					<div class="loader" id="loader_co_words"></div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="modal_info_word" role="dialog">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Info</h4>
+						</div>
+						<div class="modal-body">
+							<span>
+								<p>Il <b>Grouped Bar Chart</b> mostra le 25 parole più diffuse nei tweet scritti nel periodo selezionato nello slider temporale.</p>
+								<p>Per ogni parola, il <b>Grouped Bar Chart</b> mostra il numero di occorrenze della parola stessa (in grigio) e la percentuale media di <em>hate speech</em> nei tweet che contengono quella parola.</p>
+								<p><h3 style="color: gray">Opzioni di interazione sulla mappa</h3></p>
+								<p>Le opzioni sottostanti il <b>Grouped Bar Chart</b> permettono di visualizzare uno solo dei due attributi (numero di occorrenze delle parole e percentuale di <em>hate speech</em> presente nei tweet che contengono le parole stesse) oppure di ordinare il grafico sulla base di uno degli attributi.</p>
+								<p>La sidebar laterale sinistra fornisce una funzione di filtraggio: è infatti possibile visualizzare le 25 parole più diffuse nei tweet relativi ad uno solo dei tre gruppi vulnerabili (migranti, minoranze religiose e rom). Inoltre, cliccando su <em>Clicca qui per visualizzare la words cloud</em>, l'utente può visualizzare una <b>Words Cloud</b> contenente le 25 parole più diffuse.</p>
+								<p>L'utente può cliccare su una parola del <b>Grouped Bar Chart</b> per visualizzare delle informazioni aggiuntive mostrate in un pannello della sidebar laterale a sinistra.</p>
+								<p>In questo pannello è possibile cliccare su <em>Clicca qui per esplorare la rete delle co-occorrenze</em> per visualizare un grafo basato sul <b>force layout</b> che rappresenta le 10 parole che più frequentemente cooccorrono nei tweet contenenti la parola selezionata in precedenza.</p>
+							</span>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="modal_info_tweet" role="dialog">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Info</h4>
+						</div>
+						<div class="modal-body">
+							<p>In questo box vengono mostrati i tweet più popolari che si riferiscono ai gruppi vulnerabili all’odio: migranti, rom e minoranze religiose.</p>
+							<p>Dopo aver raccolto e filtrato per parole chiave tutti i testi in lingua italiana, vengono selezionati i tweet con il maggior numero di reazioni ricevute. Quindi, tramite le REST API di Twitter, vengono mostrati nel riquadro i tre tweet maggiormente ritwittati, quelli con maggiori risposte o quelli più citati da altri utenti. Di default vengono mostrati i testi con più retweet, ma dal box laterale è possibile selezionare i tweet da visualizzare in base al tipo di reazione oppure in base al gruppo vulnerabile specifico.<br>
+							Cliccando sul pulsante + in basso è possibile caricare fino a 15 tweets con più reazioni ricevute.</p>
+							<p>Il grafico ad area sottostante mostra il numero di tweet totali in lingua italiana che si riferiscono ai gruppi vulnerabili (area grigia) e il numero di hate speech (area rossa).<br> Spostando il cursore del grafico è possibile osservare i testi con più reazioni mese per mese e giorno per giorno.</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="modal_sharable_link" role="dialog">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Ottieni link condivisibile</h4>
+						</div>
+						<div class="modal-body">
+							<span>
+								<textarea class="form-control" id="js-copytextarea"></textarea>
+							</span>
+							<span id="span-js-textareacopybtn">
+								<button id="js-textareacopybtn" class="btn btn-default">Copia link negli appunti</button>
+							</span>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="modal_info_slider" role="dialog">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Info</h4>
+						</div>
+						<div class="modal-body">
+							<p><h3 style="color: gray">Slider temporale</h3></p>
+							<p>Lo slider temporale permette all'utente di esplorare i dati temporalmente. L'utente può cliccare (o trascinare le icone con le due lenti di ingrandimento) su un anno, un mese o un giorno e le visualizzazioni si aggiorneranno di conseguenza. Un click sull'icona con una lente di ingrandimento con all'interno un "+" permette di esplorare nel dettaglio l'anno o il mese selezionato. La lente di ingrandimento con all'interno un "-" permette di passare ad una vista più generale, cioè da giorno a mese e da mese ad anno.</p>
+							<p><h3 style="color: gray">Stacked area chart</h3></p>
+							<p>L'area grigia rappresenta i tweet che non contengono hate speech, l'area rossa quelli che contengono hate speech; quindi, la somma delle aree grigia e rossa rappresenta il numero totale di tweet riferiti ai gruppi vulnerabili selezionati.</p>
+							<p>Selezionando uno dei gruppi vulnerabili nella sidebar a sinistra, il grafico mostra soltanto il numero di tweet ad esso riferito. Inoltre, il grafico si aggiorna anche nel caso in cui l'utente modifichi la visualizzazione principale.</p>
+							<p>Quando visualizziamo la FIll Gauge Visualization, lo stacked area chart rappresenta sempre tutti i tweet italiani riferiti a tutti i gruppi vulnerabili aggregati. Quando visualizziamo la mappa coropletica (o la mappa di Dorling), lo stacked area chart rappresenta l'andamento di tutti i tweet di cui abbiamo una connotazione geografica specifica (regionale o provinciale, in base alla selezione nella sidebar a sinistra). Infine, quando si visualizzano i tweet più popolari, lo stacked area chart rappresenta l'andamento del numero totale di tweet italiani riferiti ai gruppi vulnerabili selezionati nella sidebar a sinistra.</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal custom" id="modal_loading" data-keyboard="false" data-backdrop="static">
+				<div class="modal-dialog custom modal-lg">
+					<div class="modal-content custom">
+						<br>
+						<br>
+						<div class="loader"></div>
+						<br>
+						<br>
+						<!-- Stiamo processando la tua richiesta -->
+						<br>
+						<br>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</body>
+	<script src="components/virality_tweets.js"></script>
+</html>

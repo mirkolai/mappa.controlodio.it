@@ -1,0 +1,81 @@
+.bar {
+	fill: #cecece;
+	opacity: 0.3;
+}
+.bar-hate {
+/*
+	fill: red;
+	opacity: 0.7;
+*/
+}
+/*.bar:hover {
+  fill: brown;
+}*/
+.axis--x text {
+	fill: #cecece;
+	font-size: 1.4em;
+}
+.axis--x path {
+	display: none;
+}
+.axis--x line {
+	stroke: #cecece;
+	stroke-width: 2px;
+}
+
+.axis--y text {
+	fill: #cecece;
+}
+.axis--y path {
+	stroke: #cecece;
+	stroke-width: 3px;
+}
+.axis--y line {
+	stroke: #cecece;
+	stroke-width: 2px;
+}
+
+.axis--y2 path {
+	stroke: #c60000;
+	/*opacity: 0.7;*/
+	stroke-width: 3px;
+}
+.axis--y2 line {
+	stroke: #c60000;
+	/*opacity: 0.7;*/
+	stroke-width: 2px;
+}
+.axis--y2 text {
+	fill: #cecece;
+}
+
+#axis--y_legend {
+	font-size: 1.5em;
+}
+#axis--y2_legend {
+	font-size: 1.5em;
+}
+
+/* BAR CHART OPTIONS */
+
+#bar_chart_options {
+	position: absolute;
+	top: 95%;
+	left: 10%;
+	font-size: 1.1em;
+	color: #cecece;
+}
+.options_button {
+	padding-right: 2px;
+}
+.options_button:hover {
+	opacity: .5;
+	cursor: pointer;
+}
+#order_hate {
+	display: none;
+}
+.vl {
+	border-left: 2px solid #cecece;
+	padding: 3px;
+}
